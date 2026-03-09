@@ -1,0 +1,9 @@
+# Java / Gradle
+build/
+.gradle/
+bin/
+out/
+
+# Sistema
+.DS_Store
+Thumbs.db
