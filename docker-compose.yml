@@ -23,6 +23,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://hangar-db:5432/hangar_db
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=senha_forte
+      - SPRING_FLYWAY_ENABLED=true
       - SPRING_JPA_HIBERNATE_DDL_AUTO=validate
       - SPRING_FLYWAY_BASELINE_ON_MIGRATE=true
     depends_on:
