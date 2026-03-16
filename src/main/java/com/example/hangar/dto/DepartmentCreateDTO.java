@@ -3,7 +3,7 @@ package com.example.hangar.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record DepartmentRequestDTO(
+public record DepartmentCreateDTO(
   @NotBlank(message = "Name is required")
   @Size(min = 3, max = 100)
   String name,
