@@ -16,15 +16,22 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/department")
+@RequestMapping("/api/departments")
 public class DepartmentController {
 
   @Autowired
   private DepartmentRepository repository;
 
   @GetMapping
-  public List<Department> list() {
-    return repository.findAll();
+  public List<DepartmentResponseDTO> list() {
+    return repository.findAll()
+            .stream()
+            .map(dept -> new DepartmentResponseDTO(
+                dept.getId(),
+                dept.getName(),
+                dept.getCode()
+            ))
+            .collect(Collectors.toList());
   }
 
   @GetMapping("/{id}")
@@ -68,12 +75,12 @@ public class DepartmentController {
               existingDept.setName(dto.name());
               existingDept.setCode(dto.code());
 
-              Department updated_department = repository.save(existingDept);
+              Department updatedDepartment = repository.save(existingDept);
 
               return ResponseEntity.ok(new DepartmentResponseDTO(
-                updated_department.getId(),
-                updated_department.getName(),
-                updated_department.getCode()
+                updatedDepartment.getId(),
+                updatedDepartment.getName(),
+                updatedDepartment.getCode()
               ));
             })
             .orElse(ResponseEntity.notFound().build());
