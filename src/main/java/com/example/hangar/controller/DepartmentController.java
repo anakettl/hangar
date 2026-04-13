@@ -4,7 +4,7 @@ import com.example.hangar.dto.DepartmentCreateDTO;
 import com.example.hangar.dto.DepartmentUpdateDTO;
 import com.example.hangar.dto.DepartmentResponseDTO;
 import com.example.hangar.model.Department;
-import com.example.hangar.repository.DepartmentRepository;
+import com.example.hangar.service.Departmentservice;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +16,18 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/departments")
+@RequestMapping("/api/departments", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DepartmentController {
 
-  @Autowired
-  private DepartmentRepository repository;
+  private final DepartmentService service;
+
+  public DepartmentController(DepartmentService service) {
+      this.service = service;
+  }
 
   @GetMapping
   public List<DepartmentResponseDTO> list() {
-    return repository.findAll()
+    return service.findAll()
             .stream()
             .map(dept -> new DepartmentResponseDTO(
                 dept.getId(),
@@ -36,7 +39,7 @@ public class DepartmentController {
 
   @GetMapping("/{id}")
   public ResponseEntity<DepartmentResponseDTO> show(@PathVariable Long id) {
-    return repository.findById(id)
+    return service.findById(id)
             .map(dept -> {
               DepartmentResponseDTO response = new DepartmentResponseDTO(
                 dept.getId(),
@@ -54,7 +57,7 @@ public class DepartmentController {
     department.setName(dto.name());
     department.setCode(dto.code());
 
-    Department saved = repository.save(department);
+    Department saved = service.save(department);
 
     DepartmentResponseDTO response = new DepartmentResponseDTO(
       saved.getId(),
@@ -70,12 +73,12 @@ public class DepartmentController {
           @PathVariable Long id,
           @RequestBody @Valid DepartmentUpdateDTO dto) {
 
-    return repository.findById(id)
+    return service.findById(id)
             .map(existingDept -> {
               existingDept.setName(dto.name());
               existingDept.setCode(dto.code());
 
-              Department updatedDepartment = repository.save(existingDept);
+              Department updatedDepartment = service.save(existingDept);
 
               return ResponseEntity.ok(new DepartmentResponseDTO(
                 updatedDepartment.getId(),
@@ -88,9 +91,9 @@ public class DepartmentController {
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> delete(@PathVariable Long id) {
-    return repository.findById(id)
+    return service.findById(id)
             .map(dept -> {
-              repository.delete(dept);
+              service.delete(dept);
               return ResponseEntity.noContent().<Void>build();
             })
             .orElse(ResponseEntity.notFound().build());
