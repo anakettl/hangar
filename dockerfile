@@ -16,7 +16,8 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar hangar.jar
-
+ENV SPRING_PROFILES_ACTIVE=local
+ENV JAVA_OPTS=""
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "hangar.jar"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar hangar.jar"]

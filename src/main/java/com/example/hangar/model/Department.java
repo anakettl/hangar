@@ -1,12 +1,15 @@
 package com.example.hangar.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "department")
 @Data
-
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "department")
 public class Department {
 
   @Id
