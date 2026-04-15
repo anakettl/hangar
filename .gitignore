@@ -3,11 +3,25 @@ build/
 .gradle/
 bin/
 out/
+*.class
+
+# IDEs
+.idea/
+*.iml
+.vscode/
 
 # Sistema
 .DS_Store
 Thumbs.db
 
+# Logs
+*.log
+logs/
 
-#Jetbrains
-.idea/
+# Ambiente local
+.env
+.env.*
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
