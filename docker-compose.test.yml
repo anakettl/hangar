@@ -1,0 +1,10 @@
+services:
+  hangar-db-test:
+    image: postgres:15-alpine
+    container_name: hangar-db-test
+    environment:
+      - POSTGRES_DB=hangar_test
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=senha_forte
+    ports:
+      - "5433:5432"
