@@ -19,45 +19,44 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping(path = "/api/departments", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DepartmentController {
 
-    private final DepartmentService service;
+  private final DepartmentService service;
 
-    public DepartmentController(DepartmentService service) {
-        this.service = service;
-    }
+  public DepartmentController(DepartmentService service) {
+    this.service = service;
+  }
 
-    @GetMapping
-    public ResponseEntity<List<DepartmentResponseDTO>> list() {
-        var response = service.findAll();
-        return ResponseEntity.ok(response);
-    }
+  @GetMapping
+  public ResponseEntity<List<DepartmentResponseDTO>> list() {
+    var response = service.findAll();
+    return ResponseEntity.ok(response);
+  }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DepartmentResponseDTO> show(@PathVariable Long id) {
-        var response = service.findById(id);
-        return ResponseEntity.ok(response);
-    }
+  @GetMapping("/{id}")
+  public ResponseEntity<DepartmentResponseDTO> show(@PathVariable Long id) {
+    var response = service.findById(id);
+    return ResponseEntity.ok(response);
+  }
 
-    @PostMapping
-    public ResponseEntity<DepartmentResponseDTO> create(@RequestBody @Valid DepartmentCreateDTO dto) {
-        var response = service.save(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
+  @PostMapping
+  public ResponseEntity<DepartmentResponseDTO> create(@RequestBody @Valid DepartmentCreateDTO dto) {
+    var response = service.save(dto);
+    return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<DepartmentResponseDTO> update(
-            @PathVariable Long id, @RequestBody @Valid DepartmentUpdateDTO dto) {
-        var response = service.update(id, dto);
-        return ResponseEntity.ok(response);
-    }
+  @PutMapping("/{id}")
+  public ResponseEntity<DepartmentResponseDTO> update(
+      @PathVariable Long id, @RequestBody @Valid DepartmentUpdateDTO dto) {
+    var response = service.update(id, dto);
+    return ResponseEntity.ok(response);
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Long id) {
+    service.deleteById(id);
+    return ResponseEntity.noContent().build();
+  }
 }

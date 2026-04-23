@@ -20,25 +20,27 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true, exclude = "password")
 public class User extends AuditableEntity {
-    @Column(nullable = false, unique = true, length = 50)
-    private String username;
+  @Column(nullable = false, unique = true, length = 50)
+  private String username;
 
-    @Column(nullable = false, unique = true, length = 100)
-    private String email;
+  @Column(nullable = false, unique = true, length = 100)
+  private String email;
 
-    @Column(nullable = false)
-    private String password;
+  @Column(nullable = false)
+  private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role = Role.EMPLOYEE;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private Role role = Role.EMPLOYEE;
 
-    public enum Role {
-        EMPLOYEE, MANAGER, ADMIN
-    }
+  public enum Role {
+    EMPLOYEE,
+    MANAGER,
+    ADMIN
+  }
 
-    @Override
-    protected Object getUniqueField() {
-        return username;
-    }
+  @Override
+  protected Object getUniqueField() {
+    return username;
+  }
 }
