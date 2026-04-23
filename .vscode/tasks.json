@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Gradle: Clean",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["clean"],
+      "group": "build"
+    },
+    {
+      "label": "Gradle: Build",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["build"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Gradle: Test",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["test"],
+      "group": "test"
+    },
+    {
+      "label": "Spring Boot: Run (local)",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["bootRun", "--args=--spring.profiles.active=local"],
+      "group": "build"
+    },
+    {
+      "label": "Gradle: Check",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["check"],
+      "group": "test"
+    },
+    {
+      "label": "Gradle: Build + Test",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Gradle: Build", "Gradle: Test"]
+    }
+  ]
+}

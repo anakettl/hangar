@@ -1,0 +1,10 @@
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.import.gradle.wrapper.enabled": true,
+  "java.import.gradle.enabled": true,
+  "java.import.gradle.offline.enabled": false,
+  "editor.formatOnSave": true,
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug Spring Boot (test)",
+      "request": "launch",
+      "mainClass": "com.example.hangar.HangarApplication",
+      "projectName": "hangar",
+      "args": "--spring.profiles.active=test",
+      "env": {
+        "SPRING_PROFILES_ACTIVE": "test"
+      },
+      "preLaunchTask": "Gradle: Build"
+    }
+  ]
+}

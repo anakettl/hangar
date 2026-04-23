@@ -8,7 +8,7 @@ out/
 # IDEs
 .idea/
 *.iml
-.vscode/
+!.vscode/
 
 # Sistema
 .DS_Store
