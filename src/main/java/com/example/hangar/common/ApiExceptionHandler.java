@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest req) {
+    public ResponseEntity<ApiErrorResponse> handleValidation(MethodArgumentNotValidException ex,
+                                                             HttpServletRequest req) {
         Map<String, List<String>> errors = ex.getBindingResult()
             .getFieldErrors()
             .stream()
