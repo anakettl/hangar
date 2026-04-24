@@ -13,18 +13,18 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-  hangar-app:
-    build: .
-    container_name: hangar-app
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=local
-      - DB_HOST=hangar-db
-      - DB_PORT=5432
-      - DB_NAME=hangar_db
-      - DB_USER=admin
-      - DB_PASSWORD=senha_forte
-    depends_on:
-      hangar-db:
-        condition: service_healthy
+#  hangar-app:
+#    build: .
+#    container_name: hangar-app
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=local
+#      - DB_HOST=hangar-db
+#      - DB_PORT=5432
+#      - DB_NAME=hangar_db
+#      - DB_USER=admin
+#      - DB_PASSWORD=senha_forte
+#    depends_on:
+#      hangar-db:
+#        condition: service_healthy
