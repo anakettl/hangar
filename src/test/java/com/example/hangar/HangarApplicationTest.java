@@ -6,10 +6,9 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class HangarApplicationTests {
+class HangarApplicationTest {
 
 	@Test
 	void contextLoads() {
 	}
-
 }
